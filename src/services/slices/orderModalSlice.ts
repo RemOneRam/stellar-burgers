@@ -7,7 +7,7 @@ export interface OrderModalState {
   orderModalData: TOrder | null;
 }
 
-const initialState: OrderModalState = {
+export const initialState: OrderModalState = {
   orderRequest: false,
   orderModalData: null
 };

@@ -8,11 +8,15 @@ module.exports = {
     '^@ui/(.*)$': '<rootDir>/src/components/ui/$1',
     '^@pages/(.*)$': '<rootDir>/src/pages/$1',
     '^@utils-types$': '<rootDir>/src/utils/types',
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@api$': '<rootDir>/src/utils/burger-api.ts',
     '^@slices/(.*)$': '<rootDir>/src/services/slices/$1',
     '^@selectors$': '<rootDir>/src/services/selectors',
+    '^(\\.\\./)+utils/(.*)$': '<rootDir>/src/utils/$2',
     '\\.(css|less|scss|sass)$': 'jest-css-modules-transform'
   },
+  moduleDirectories: ['node_modules', '<rootDir>', '<rootDir>/src'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.jsx?$': 'babel-jest'
@@ -26,4 +30,5 @@ module.exports = {
   ],
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts']
 };
+
 

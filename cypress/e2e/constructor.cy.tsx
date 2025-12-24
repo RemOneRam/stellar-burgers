@@ -1,3 +1,7 @@
+const BURGER_CONSTRUCTOR_SELECTOR = '[class*="burger_constructor"]';
+const MODAL_SELECTOR = '[class*="modal"]';
+const MODAL_OVERLAY_SELECTOR = '[class*="modal_overlay"]';
+
 describe('Burger Constructor', () => {
   beforeEach(() => {
     cy.intercept('GET', '**/api/ingredients', { fixture: 'ingredients.json' }).as(
@@ -16,7 +20,7 @@ describe('Burger Constructor', () => {
         .contains('Добавить')
         .click();
 
-      cy.get('[class*="burger_constructor"]').should('contain', 'Биокотлета из марсианской Магнолии');
+      cy.get(BURGER_CONSTRUCTOR_SELECTOR).should('contain', 'Биокотлета из марсианской Магнолии');
     });
 
     it('should add bun to constructor', () => {
@@ -27,7 +31,7 @@ describe('Burger Constructor', () => {
         .contains('Добавить')
         .click();
 
-      cy.get('[class*="burger_constructor"]').should('contain', 'Краторная булка N-200i');
+      cy.get(BURGER_CONSTRUCTOR_SELECTOR).should('contain', 'Краторная булка N-200i');
     });
   });
 
@@ -35,37 +39,37 @@ describe('Burger Constructor', () => {
     it('should open modal with ingredient details on click', () => {
       cy.contains('Биокотлета из марсианской Магнолии').click();
 
-      cy.get('[class*="modal"]').should('be.visible');
-      cy.get('[class*="modal"]').should('contain', 'Биокотлета из марсианской Магнолии');
-      cy.get('[class*="modal"]').should('contain', 'Калории, ккал');
-      cy.get('[class*="modal"]').should('contain', 'Белки, г');
-      cy.get('[class*="modal"]').should('contain', 'Жиры, г');
-      cy.get('[class*="modal"]').should('contain', 'Углеводы, г');
+      cy.get(MODAL_SELECTOR).should('be.visible');
+      cy.get(MODAL_SELECTOR).should('contain', 'Биокотлета из марсианской Магнолии');
+      cy.get(MODAL_SELECTOR).should('contain', 'Калории, ккал');
+      cy.get(MODAL_SELECTOR).should('contain', 'Белки, г');
+      cy.get(MODAL_SELECTOR).should('contain', 'Жиры, г');
+      cy.get(MODAL_SELECTOR).should('contain', 'Углеводы, г');
     });
 
     it('should display correct ingredient data in modal', () => {
       cy.contains('Биокотлета из марсианской Магнолии').click();
 
-      cy.get('[class*="modal"]').should('contain', 'Биокотлета из марсианской Магнолии');
-      cy.get('[class*="modal"]').should('contain', '424');
-      cy.get('[class*="modal"]').should('contain', '420');
-      cy.get('[class*="modal"]').should('contain', '142');
-      cy.get('[class*="modal"]').should('contain', '242');
+      cy.get(MODAL_SELECTOR).should('contain', 'Биокотлета из марсианской Магнолии');
+      cy.get(MODAL_SELECTOR).should('contain', '424');
+      cy.get(MODAL_SELECTOR).should('contain', '420');
+      cy.get(MODAL_SELECTOR).should('contain', '142');
+      cy.get(MODAL_SELECTOR).should('contain', '242');
     });
 
     it('should close modal on close button click', () => {
       cy.contains('Биокотлета из марсианской Магнолии').click();
 
-      cy.get('[class*="modal"]').should('be.visible');
-      cy.get('[class*="modal"]').find('button').first().click();
-      cy.get('[class*="modal"]').should('not.exist');
+      cy.get(MODAL_SELECTOR).should('be.visible');
+      cy.get(MODAL_SELECTOR).find('button').first().click();
+      cy.get(MODAL_SELECTOR).should('not.exist');
     });
 
     it('should close modal on overlay click', () => {
       cy.contains('Биокотлета из марсианской Магнолии').click();
 
-      cy.get('[class*="modal"]').should('be.visible');
-      cy.get('[class*="modal_overlay"]').click({ force: true });
+      cy.get(MODAL_SELECTOR).should('be.visible');
+      cy.get(MODAL_OVERLAY_SELECTOR).click({ force: true });
       cy.url().should('eq', 'http://localhost:4000/');
     });
   });
@@ -104,8 +108,8 @@ describe('Burger Constructor', () => {
 
       cy.wait('@createOrder');
 
-      cy.get('[class*="modal"]').should('be.visible');
-      cy.get('[class*="modal"]').should('contain', '12345');
+      cy.get(MODAL_SELECTOR).should('be.visible');
+      cy.get(MODAL_SELECTOR).should('contain', '12345');
     });
 
     it('should clear constructor after successful order', () => {
@@ -125,11 +129,11 @@ describe('Burger Constructor', () => {
 
       cy.wait('@createOrder');
 
-      cy.get('[class*="modal"]').should('be.visible');
-      cy.get('[class*="modal"]').find('button').first().click();
+      cy.get(MODAL_SELECTOR).should('be.visible');
+      cy.get(MODAL_SELECTOR).find('button').first().click();
 
-      cy.get('[class*="burger_constructor"]').should('contain', 'Выберите булки');
-      cy.get('[class*="burger_constructor"]').should('contain', 'Выберите начинку');
+      cy.get(BURGER_CONSTRUCTOR_SELECTOR).should('contain', 'Выберите булки');
+      cy.get(BURGER_CONSTRUCTOR_SELECTOR).should('contain', 'Выберите начинку');
     });
 
     it('should redirect to login if not authenticated', () => {

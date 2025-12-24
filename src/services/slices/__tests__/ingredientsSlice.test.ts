@@ -1,6 +1,7 @@
 import ingredientsReducer, {
   fetchIngredients,
-  IngredientsState
+  IngredientsState,
+  initialState
 } from '../ingredientsSlice';
 import { TIngredient } from '@utils-types';
 import * as burgerApi from '@api';
@@ -37,12 +38,6 @@ const mockIngredients: TIngredient[] = [
 jest.mock('@api', () => ({
   getIngredientsApi: jest.fn()
 }));
-
-const initialState: IngredientsState = {
-  items: [],
-  isLoading: false,
-  error: null
-};
 
 describe('ingredientsSlice async actions', () => {
   beforeEach(() => {
@@ -97,4 +92,5 @@ describe('ingredientsSlice async actions', () => {
     });
   });
 });
+
 

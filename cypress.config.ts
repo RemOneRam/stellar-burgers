@@ -5,7 +5,9 @@ export default defineConfig({
     baseUrl: 'http://localhost:4000',
     setupNodeEvents(on, config) {
       // implement node event listeners here
-    }
+    },
+    supportFile: false
   }
 });
+
 

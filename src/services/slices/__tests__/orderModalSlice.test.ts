@@ -1,7 +1,8 @@
 import orderModalReducer, {
   createOrder,
   clearOrderModal,
-  OrderModalState
+  OrderModalState,
+  initialState
 } from '../orderModalSlice';
 import { TOrder } from '@utils-types';
 import * as burgerApi from '@api';
@@ -19,11 +20,6 @@ const mockOrder: TOrder = {
 jest.mock('@api', () => ({
   orderBurgerApi: jest.fn()
 }));
-
-const initialState: OrderModalState = {
-  orderRequest: false,
-  orderModalData: null
-};
 
 describe('orderModalSlice', () => {
   beforeEach(() => {
@@ -81,4 +77,5 @@ describe('orderModalSlice', () => {
     });
   });
 });
+
 

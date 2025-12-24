@@ -3,7 +3,8 @@ import constructorReducer, {
   removeIngredient,
   moveIngredient,
   clearConstructor,
-  ConstructorState
+  ConstructorState,
+  initialState
 } from '../constructorSlice';
 import { TIngredient, TConstructorIngredient } from '@utils-types';
 
@@ -49,11 +50,6 @@ const mockSauce: TConstructorIngredient = {
   image_mobile: 'https://code.s3.yandex.net/react/code/sauce-02-mobile.png',
   image_large: 'https://code.s3.yandex.net/react/code/sauce-02-large.png',
   id: 'test-id-2'
-};
-
-const initialState: ConstructorState = {
-  bun: null,
-  ingredients: []
 };
 
 describe('constructorSlice', () => {
@@ -165,4 +161,5 @@ describe('constructorSlice', () => {
     });
   });
 });
+
 
