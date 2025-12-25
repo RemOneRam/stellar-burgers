@@ -16,11 +16,18 @@
 
 .link {
   display: flex;
+  align-items: center;
   text-decoration: none;
   color: var(--text-inactive-color);
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-.link_active {
+.link:hover {
+  color: var(--text-primary-color);
+}
+
+.link.active {
   color: var(--text-primary-color);
 }
 
